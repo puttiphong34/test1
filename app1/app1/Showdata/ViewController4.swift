@@ -31,8 +31,6 @@ class ViewController4: UIViewController, DidTapHeader {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var defaultStore : Firestore?
-    var location : [DocumentSnapshot] = []
     
     var data:[Tab4Data] = [Tab4Data]()
     
@@ -43,16 +41,16 @@ class ViewController4: UIViewController, DidTapHeader {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.readData()
-        self.read()
     }
-    func read(){
-        
-    }
+    
     func readData() {
         self.data.removeAll()
         
-        defaultStore = Firestore.firestore()
-        defaultStore?.collection("Promptnow").getDocuments { (snapshot, err) in
+        
+        let docRef = Firestore.firestore().collection("Promptnow")
+        
+        docRef.getDocuments { (snapshot, err) in
+
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
@@ -121,7 +119,6 @@ extension ViewController4: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
-
     
 
 

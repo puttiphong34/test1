@@ -39,8 +39,8 @@ class ViewController2: UIViewController {
         if textfield.text != "" {
             guard let datadb = textfield.text else {return}
             let docRef = Firestore.firestore().collection("Promptnow").document(datadb)
-            
-           // let imageName = NSUUID().uuidString
+         
+            // let imageName = NSUUID().uuidString
 
             
             docRef.getDocument{ (document, err) in
@@ -89,22 +89,7 @@ class ViewController2: UIViewController {
                 }
                 
             }
-            // end
-//            func downloadimage(withURL url:URL, completion: @escaping (_ image:UIImage?)->()) {
-//                let data = URLSession.shared.dataTask(with: url) { data, url, error in
-//                    var downloadtimage:UIImage?
-//
-//                    if let data = data {
-//                        downloadtimage = UIImage(data: data)
-//                    }
-//                    DispatchQueue.main.async {
-//                         completion(downloadtimage)
-//
-//                    }
-//                }
-//                data.resume()
-//
-//            }
+
         }
     }
 }

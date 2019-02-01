@@ -23,6 +23,7 @@
 		E001BE7A21E46C2500C3F145 /* Tabbarcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E001BE7921E46C2500C3F145 /* Tabbarcon.swift */; };
 		E001BE7C21E48F1D00C3F145 /* dataCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E001BE7B21E48F1D00C3F145 /* dataCollectionViewCell.swift */; };
 		E04B2B9D21E88F9700DF52AD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E04B2B9C21E88F9700DF52AD /* GoogleService-Info.plist */; };
+		E0A727042202A86600E80043 /* ViewController5.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A727032202A86600E80043 /* ViewController5.swift */; };
 		E0FAB63721EC9E5B00295D7E /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAB63621EC9E5B00295D7E /* HeaderCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		E001BE7921E46C2500C3F145 /* Tabbarcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabbarcon.swift; sourceTree = "<group>"; };
 		E001BE7B21E48F1D00C3F145 /* dataCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataCollectionViewCell.swift; sourceTree = "<group>"; };
 		E04B2B9C21E88F9700DF52AD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E0A727032202A86600E80043 /* ViewController5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController5.swift; sourceTree = "<group>"; };
 		E0FAB63621EC9E5B00295D7E /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		FF43339C850E50805F82D34A /* Pods_app1UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_app1UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -156,6 +158,7 @@
 				E001BE4321E4688000C3F145 /* AppDelegate.swift */,
 				E001BE4521E4688000C3F145 /* ViewController.swift */,
 				E001BE4721E4688000C3F145 /* Main.storyboard */,
+				E0A727052202A86B00E80043 /* Tableview */,
 				E001BE7B21E48F1D00C3F145 /* dataCollectionViewCell.swift */,
 				E00299452201B93B006A58B4 /* Qrcode */,
 				E03CDC4D21FEBFCC00E569DE /* AddDataToFirebase */,
@@ -208,6 +211,14 @@
 				E001BE7521E4691400C3F145 /* ViewController4.swift */,
 			);
 			path = Showdata;
+			sourceTree = "<group>";
+		};
+		E0A727052202A86B00E80043 /* Tableview */ = {
+			isa = PBXGroup;
+			children = (
+				E0A727032202A86600E80043 /* ViewController5.swift */,
+			);
+			path = Tableview;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -478,6 +489,7 @@
 				E001BE4621E4688000C3F145 /* ViewController.swift in Sources */,
 				E001BE4421E4688000C3F145 /* AppDelegate.swift in Sources */,
 				E001BE7421E4690700C3F145 /* ViewController3.swift in Sources */,
+				E0A727042202A86600E80043 /* ViewController5.swift in Sources */,
 				E0FAB63721EC9E5B00295D7E /* HeaderCell.swift in Sources */,
 				E001BE7C21E48F1D00C3F145 /* dataCollectionViewCell.swift in Sources */,
 				E001BE7221E468F400C3F145 /* ViewController2.swift in Sources */,

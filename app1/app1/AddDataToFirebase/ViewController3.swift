@@ -12,18 +12,70 @@ import FirebaseFirestore
 import FirebaseStorage
 class ViewController3: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
+    @IBOutlet weak var imginimge: UIImageView!
     @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var dept: UITextField!
     @IBOutlet weak var age: UITextField!
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var id: UITextField!
     
+    @IBOutlet weak var btshowqr: UIButton!
+    var getname = String()
+    var getid = String()
+    var getdept = String()
+    var getage = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         img.layer.cornerRadius = img.frame.size.width / 2
         img.layer.masksToBounds = true
+  //      btshowqr.isEnabled = false
         
-        // Do any additional setup after loading the view.
+        id.text = getid
+        name.text = getname
+        age.text = getage
+        dept.text = getdept
+        
+        showimage()
+    }
+    func downloadImage(with url: URL) {
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if error != nil {
+                print(error!)
+                return
+            }
+            DispatchQueue.main.async {
+                self.img.image = UIImage(data: data!)
+            }
+        }.resume()
+    }
+    
+    func showimage() {
+        if id.text != "" {
+            guard let datadb = id.text else {return}
+            let docRef = Firestore.firestore().collection("Promptnow").document(datadb)
+            
+            docRef.getDocument{ (document, err) in
+                if let document = document {
+                    if document.exists{
+                        
+                        let imageurl = document.get("imageURL") as! String
+                        let imageurl2 = URL(string: imageurl)
+                        self.downloadImage(with: imageurl2!)
+                        
+                    }else {
+                        let alert = UIAlertController(title: "ไม่พบข้อมูล", message: nil, preferredStyle: .alert)
+                        let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        alert.addAction(okButton)
+                        self.present(alert,animated: true,completion: nil)
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        }
     }
     
     @IBAction func openlb(_ sender: Any) {
@@ -70,6 +122,8 @@ class ViewController3: UIViewController,UIImagePickerControllerDelegate,UINaviga
         picker.dismiss(animated: true, completion: nil)
 
     }
+    
+    
 //    func uploadMedia(completion: @escaping (_ url: String?) -> Void) {
 //        let storageRef = Storage.storage().reference().child("myImage.png")
 //        if let uploadData = self.img.image!.pngData() {
@@ -152,4 +206,57 @@ class ViewController3: UIViewController,UIImagePickerControllerDelegate,UINaviga
         self.uploadMedia()
  
     }
+    func downloadImageinqr(with url: URL) {
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if error != nil {
+                print(error!)
+                return
+            }
+            DispatchQueue.main.async {
+                self.imginimge.image = UIImage(data: data!)
+            }
+            }.resume()
+    }
+    @IBAction func Showqrcode(_ sender: Any) {
+        if id.text != "" {
+            guard let datadb = id.text else {return}
+            let docRef = Firestore.firestore().collection("Promptnow").document(datadb)
+            
+            docRef.getDocument{ (document, err) in
+                if let document = document {
+                    if document.exists{
+                        
+                        let imageurl = document.get("imageURL") as! String
+                        let imageinimage = URL(string: imageurl)
+                        self.downloadImageinqr(with: imageinimage!)
+                        
+                        let qrcodedata = document.get("qrcode") as! String
+                        
+                        var data = qrcodedata.data(using: .ascii, allowLossyConversion: false)
+                        
+                        let filter = CIFilter(name: "CIQRCodeGenerator")
+                        filter?.setValue(data, forKey: "inputMessage")
+                        filter?.setValue("M", forKey: "inputCorrectionLevel")
+                        guard let qrcode = filter?.outputImage else { return }
+                        let scaleX = self.img.frame.size.width / qrcode.extent.size.width
+                        let scaleY = self.img.frame.size.height / qrcode.extent.size.height
+                        
+                        let transform = CGAffineTransform(scaleX: scaleX, y: scaleY)
+                        
+                        let output = filter?.outputImage?.transformed(by: transform)
+                        
+                        let img = UIImage(ciImage: (output)! )
+                        
+                        self.img.image = img
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+
 }
