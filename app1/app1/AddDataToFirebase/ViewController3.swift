@@ -18,23 +18,36 @@ class ViewController3: UIViewController,UIImagePickerControllerDelegate,UINaviga
     @IBOutlet weak var age: UITextField!
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var id: UITextField!
-    
     @IBOutlet weak var btshowqr: UIButton!
+    
     var getname = String()
     var getid = String()
     var getdept = String()
     var getage = String()
     
+    var isFromTab5:Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        img.layer.cornerRadius = img.frame.size.width / 2
-        img.layer.masksToBounds = true
+        
+        
+        if !self.isFromTab5 {
+            img.layer.cornerRadius = img.frame.size.width / 2
+            img.layer.masksToBounds = true
+        }
+        
   //      btshowqr.isEnabled = false
         
         id.text = getid
         name.text = getname
         age.text = getage
         dept.text = getdept
+        
+        id.isUserInteractionEnabled = !self.isFromTab5
+        name.isUserInteractionEnabled = !self.isFromTab5
+        age.isUserInteractionEnabled = !self.isFromTab5
+        dept.isUserInteractionEnabled = !self.isFromTab5
+        
         
         showimage()
     }

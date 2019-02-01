@@ -93,7 +93,7 @@ class ViewController5: UIViewController, UITableViewDataSource, UITableViewDeleg
         dvc.getid = userData[indexPath.row].userId
         dvc.getdept = userData[indexPath.row].userDept
         dvc.getage = userData[indexPath.row].userAge
-        
+        dvc.isFromTab5 = true
      
         
         self.navigationController?.pushViewController(dvc, animated: true)
