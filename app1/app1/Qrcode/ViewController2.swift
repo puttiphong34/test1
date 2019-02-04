@@ -10,7 +10,7 @@ import UIKit
 import FirebaseFirestore
 import FirebaseStorage
 
-class ViewController2: UIViewController {
+class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var imageQR: UIImageView!
     @IBOutlet weak var textfield: UITextField!
@@ -30,6 +30,63 @@ class ViewController2: UIViewController {
                 self.imageInQR.image = UIImage(data: data!)
             }
         }.resume()
+    }
+    
+    @IBAction func openlb(_ sender: Any) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+        imagePicker.allowsEditing = true
+        
+        self.present(imagePicker, animated: true, completion: nil) 
+    }
+    
+    @IBAction func btnSave(_ sender: Any) {
+        
+        let layer = UIApplication.shared.keyWindow?.layer
+        let scale = UIScreen.main.scale
+        UIGraphicsBeginImageContextWithOptions((layer?.frame.size)!, false, scale)
+        
+        layer?.render(in: UIGraphicsGetCurrentContext()!)
+        let screenshot = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        UIImageWriteToSavedPhotosAlbum(screenshot!, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        
+        if let editimage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            imageQR.image = editimage
+        }else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            imageQR.image = image
+            
+        }else{
+            //error
+            print("error")
+        }
+        
+        self.dismiss(animated: true, completion: nil)
+        //        img.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        //        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            // we got back an error!
+            let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(ac, animated: true)
+        }
     }
     
     @IBAction func bt(_ sender: Any) {

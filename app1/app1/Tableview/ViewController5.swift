@@ -10,17 +10,11 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 
-//class Data {
-//    var name: String = ""
-//
-//    init(name: String) {
-//       self.name = name
-//    }
-//}
 
-class User {
-    var user:UserData = UserData()
-}
+
+//class User {
+//    var user:UserData = UserData()
+//}
 
 class UserData {
     var userId = ""

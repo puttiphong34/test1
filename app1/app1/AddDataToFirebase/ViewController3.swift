@@ -19,6 +19,9 @@ class ViewController3: UIViewController,UIImagePickerControllerDelegate,UINaviga
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var id: UITextField!
     @IBOutlet weak var btshowqr: UIButton!
+    @IBOutlet weak var btncamera: UIButton!
+    @IBOutlet weak var btnlibrare: UIButton!
+    @IBOutlet weak var btnadd: UIButton!
     
     var getname = String()
     var getid = String()
@@ -36,7 +39,10 @@ class ViewController3: UIViewController,UIImagePickerControllerDelegate,UINaviga
             img.layer.masksToBounds = true
         }
         
-  //      btshowqr.isEnabled = false
+        btshowqr.isEnabled = self.isFromTab5
+        btncamera.isHidden = self.isFromTab5
+        btnlibrare.isHidden = self.isFromTab5
+        btnadd.isHidden = self.isFromTab5
         
         id.text = getid
         name.text = getname
@@ -97,7 +103,9 @@ class ViewController3: UIViewController,UIImagePickerControllerDelegate,UINaviga
         imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
         imagePicker.allowsEditing = true
         
-        self.present(imagePicker, animated: true, completion: nil)    }
+        self.present(imagePicker, animated: true, completion: nil)
+        
+    }
     
     @IBAction func cameraBtn(_ sender: Any) {
         let imagePicker = UIImagePickerController()
@@ -117,9 +125,10 @@ class ViewController3: UIViewController,UIImagePickerControllerDelegate,UINaviga
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 
         
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-        {
-            img.image = image
+        if let editimage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+                img.image = editimage
+        }else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+                img.image = image
             
         }else{
             //error
