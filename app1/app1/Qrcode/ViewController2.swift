@@ -9,17 +9,22 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseStorage
+import AVFoundation
 
 class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var imageQR: UIImageView!
     @IBOutlet weak var textfield: UITextField!
-    
     @IBOutlet weak var imageInQR: UIImageView!
+    @IBOutlet weak var btngen: UIButton!
+    @IBOutlet weak var btnsave: UIButton!
     
     override func viewDidLoad() {
+        
+        btnsave.isEnabled = false
 
     }
+    
     func downloadImage(with url: URL) {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil {
@@ -56,12 +61,48 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
 
         dismiss(animated: true, completion: nil)
     }
-    
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//        if let qrcodeImg = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+//            let detector:CIDetector=CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy:CIDetectorAccuracyHigh])!
+//            let ciImage:CIImage=CIImage(image:qrcodeImg)!
+//            var qrCodeLink=""
+//
+//            let features=detector.features(in: ciImage)
+//            for feature in features as! [CIQRCodeFeature] {
+//                qrCodeLink += feature.messageString!
+//            }
+//
+//            if qrCodeLink=="" {
+//                print("nothing")
+//            }else{
+//                print("message: \(qrCodeLink)")
+//            }
+//        }
+//        else{
+//            print("Something went wrong")
+//        }
+//        self.dismiss(animated: true, completion: nil)
+//    }
+//
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        
         if let editimage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            let detector: CIDetector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy:CIDetectorAccuracyHigh])!
+            let ciImage: CIImage=CIImage(image:editimage)!
+            var qrCodeLink = ""
+            
+            let features = detector.features(in: ciImage)
+            for feature in features as! [CIQRCodeFeature] {
+                qrCodeLink += feature.messageString!
+            }
+            
+            if qrCodeLink == "" {
+                print("nothing")
+            }else{
+                print("message: \(qrCodeLink)")
+            }
             imageQR.image = editimage
+            
         }else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             imageQR.image = image
             
@@ -71,8 +112,6 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
         }
         
         self.dismiss(animated: true, completion: nil)
-        //        img.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-        //        self.dismiss(animated: true, completion: nil)
         
     }
     
@@ -91,8 +130,6 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
     
     @IBAction func bt(_ sender: Any) {
 
-    
-        
         if textfield.text != "" {
             guard let datadb = textfield.text else {return}
             let docRef = Firestore.firestore().collection("Promptnow").document(datadb)
@@ -134,6 +171,8 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
                         let img = UIImage(ciImage: (output)! )
                         
                         self.imageQR.image = img
+                        
+                        self.btnsave.isEnabled = true
 
                     }else {
                         let alert = UIAlertController(title: "ไม่พบข้อมูลในการสร้าง", message: nil, preferredStyle: .alert)
