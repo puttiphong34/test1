@@ -252,9 +252,9 @@ class ViewController3: UIViewController,UIImagePickerControllerDelegate,UINaviga
                         let imageinimage = URL(string: imageurl)
                         self.downloadImageinqr(with: imageinimage!)
                         
-                        let qrcodedata = document.get("qrcode") as! String
+                      //  let qrcodedata = document.get("qrcode") as! String
                         
-                        var data = qrcodedata.data(using: .ascii, allowLossyConversion: false)
+                        var data = self.getid.data(using: .ascii, allowLossyConversion: false)
                         
                         let filter = CIFilter(name: "CIQRCodeGenerator")
                         filter?.setValue(data, forKey: "inputMessage")

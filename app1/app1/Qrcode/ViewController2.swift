@@ -18,12 +18,23 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
     @IBOutlet weak var imageInQR: UIImageView!
     @IBOutlet weak var btngen: UIButton!
     @IBOutlet weak var btnsave: UIButton!
+    @IBOutlet weak var lbid: UILabel!
+    @IBOutlet weak var lbdept: UILabel!
+    @IBOutlet weak var lbname: UILabel!
+    @IBOutlet weak var lbage: UILabel!
     
     override func viewDidLoad() {
         
         btnsave.isEnabled = false
+        
+        lbid.isHidden = true
+        lbage.isHidden = true
+        lbname.isHidden = true
+        lbdept.isHidden = true
 
     }
+    
+    
     
     func downloadImage(with url: URL) {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -43,7 +54,12 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
         imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
         imagePicker.allowsEditing = true
         
-        self.present(imagePicker, animated: true, completion: nil) 
+        self.present(imagePicker, animated: true, completion: nil)
+        
+        lbid.isHidden = false
+        lbage.isHidden = false
+        lbname.isHidden = false
+        lbdept.isHidden = false
     }
     
     @IBAction func btnSave(_ sender: Any) {
@@ -100,6 +116,40 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
                 print("nothing")
             }else{
                 print("message: \(qrCodeLink)")
+                
+                   // guard let datadb = qrCodeLink else {return}
+                    let docRef = Firestore.firestore().collection("Promptnow").document(qrCodeLink)
+                
+                    docRef.getDocument{ (document, err) in
+                        if let document = document {
+                            if document.exists{
+                                
+//                                let imageurl = document.get("imageURL") as! String
+//                                let imageurl2 = URL(string: imageurl)
+//                                self.downloadImage(with: imageurl2!)
+//
+                                let age = document.get("age") as! String
+                                let name = document.get("name") as! String
+                                let docID = document.documentID
+                                let dept = document.get("dept") as! String
+                                
+                                self.lbid.text = docID
+                                self.lbdept.text = dept
+                                self.lbname.text = name
+                                self.lbage.text = age
+                                
+                            }else {
+                                let alert = UIAlertController(title: "ไม่พบข้อมูลในการสร้าง", message: nil, preferredStyle: .alert)
+                                let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+                                alert.addAction(okButton)
+                                self.present(alert,animated: true,completion: nil)
+                                
+                            }
+                            
+                        }
+                        
+                    }
+
             }
             imageQR.image = editimage
             
@@ -150,12 +200,12 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
                         let docID = document.documentID
                         let dept = document.get("dept") as! String
                         
-                        let qrcodedata = ("ID:\(docID)\t\t |Depatment:\(dept)\t\t |Name:\(name)\t\t |Age:\(age)")
+                      //  let qrcodedata = ("ID:\(docID)\t\t |Depatment:\(dept)\t\t |Name:\(name)\t\t |Age:\(age)")
                         
-                        let docRef2 = Firestore.firestore()
-                        docRef2.collection("Promptnow").document(docID).updateData(["qrcode": qrcodedata])
+//                        let docRef2 = Firestore.firestore()
+//                        docRef2.collection("Promptnow").document(docID).updateData(["qrcode": qrcodedata])
                         
-                        var data = qrcodedata.data(using: .ascii, allowLossyConversion: false)
+                        var data = docID.data(using: .ascii, allowLossyConversion: false)
                         
                         let filter = CIFilter(name: "CIQRCodeGenerator")
                         filter?.setValue(data, forKey: "inputMessage")
