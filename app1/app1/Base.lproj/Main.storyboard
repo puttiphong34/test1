@@ -292,6 +292,10 @@
                         <outlet property="lbdept" destination="9lO-5P-o4d" id="Q52-PH-GN8"/>
                         <outlet property="lbid" destination="UwQ-rs-CMR" id="CmE-iO-iHc"/>
                         <outlet property="lbname" destination="6sG-Rh-pR1" id="dYc-pf-l3N"/>
+                        <outlet property="lbtitleage" destination="85X-yK-D5P" id="C7M-fD-mqL"/>
+                        <outlet property="lbtitledept" destination="Rd1-8N-fIu" id="liM-O7-u2E"/>
+                        <outlet property="lbtitleid" destination="HLn-Gk-KWu" id="6Uy-K7-zof"/>
+                        <outlet property="lbtitlename" destination="Mr7-2W-Lfe" id="re7-ot-DEX"/>
                         <outlet property="textfield" destination="huE-Yo-1C3" id="tjf-pq-mAS"/>
                     </connections>
                 </viewController>

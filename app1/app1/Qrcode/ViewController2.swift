@@ -22,6 +22,10 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
     @IBOutlet weak var lbdept: UILabel!
     @IBOutlet weak var lbname: UILabel!
     @IBOutlet weak var lbage: UILabel!
+    @IBOutlet weak var lbtitleid: UILabel!
+    @IBOutlet weak var lbtitledept: UILabel!
+    @IBOutlet weak var lbtitlename: UILabel!
+    @IBOutlet weak var lbtitleage: UILabel!
     
     override func viewDidLoad() {
         
@@ -31,6 +35,11 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
         lbage.isHidden = true
         lbname.isHidden = true
         lbdept.isHidden = true
+        
+        lbtitleid.isHidden = true
+        lbtitleage.isHidden = true
+        lbtitledept.isHidden = true
+        lbtitlename.isHidden = true
 
     }
     
@@ -60,6 +69,13 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
         lbage.isHidden = false
         lbname.isHidden = false
         lbdept.isHidden = false
+        
+        lbtitleid.isHidden = false
+        lbtitleage.isHidden = false
+        lbtitledept.isHidden = false
+        lbtitlename.isHidden = false
+
+        
     }
     
     @IBAction func btnSave(_ sender: Any) {
@@ -117,17 +133,12 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
             }else{
                 print("message: \(qrCodeLink)")
                 
-                   // guard let datadb = qrCodeLink else {return}
                     let docRef = Firestore.firestore().collection("Promptnow").document(qrCodeLink)
                 
                     docRef.getDocument{ (document, err) in
                         if let document = document {
                             if document.exists{
                                 
-//                                let imageurl = document.get("imageURL") as! String
-//                                let imageurl2 = URL(string: imageurl)
-//                                self.downloadImage(with: imageurl2!)
-//
                                 let age = document.get("age") as! String
                                 let name = document.get("name") as! String
                                 let docID = document.documentID
@@ -139,7 +150,7 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
                                 self.lbage.text = age
                                 
                             }else {
-                                let alert = UIAlertController(title: "ไม่พบข้อมูลในการสร้าง", message: nil, preferredStyle: .alert)
+                                let alert = UIAlertController(title: "ไม่พบข้อมูล", message: nil, preferredStyle: .alert)
                                 let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
                                 alert.addAction(okButton)
                                 self.present(alert,animated: true,completion: nil)
