@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 import FirebaseStorage
-class ViewController3: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class ViewController3: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate {
 
     @IBOutlet weak var imginimge: UIImageView!
     @IBOutlet weak var img: UIImageView!
@@ -54,6 +54,7 @@ class ViewController3: UIViewController,UIImagePickerControllerDelegate,UINaviga
         age.isUserInteractionEnabled = !self.isFromTab5
         dept.isUserInteractionEnabled = !self.isFromTab5
         
+        id.delegate = self
         
         showimage()
     }
@@ -161,6 +162,13 @@ class ViewController3: UIViewController,UIImagePickerControllerDelegate,UINaviga
 //            }
 //        }
 //    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let maxLength = 4
+        let currentString: NSString = textField.text! as NSString
+        let newString: NSString =
+            currentString.replacingCharacters(in: range, with: string) as NSString
+        return newString.length <= maxLength
+    }
     
     func uploadMedia()  {
         let imageName = NSUUID().uuidString
@@ -237,7 +245,7 @@ class ViewController3: UIViewController,UIImagePickerControllerDelegate,UINaviga
             DispatchQueue.main.async {
                 self.imginimge.image = UIImage(data: data!)
             }
-            }.resume()
+        }.resume()
     }
     @IBAction func Showqrcode(_ sender: Any) {
         if id.text != "" {

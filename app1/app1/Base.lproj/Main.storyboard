@@ -174,12 +174,12 @@
                                 <rect key="frame" x="170.5" y="194" width="34" height="30"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
-                                    <action selector="btnSave:" destination="2W5-Wt-kRj" eventType="touchUpInside" id="wdt-WA-baO"/>
+                                    <action selector="btnSave:" destination="2W5-Wt-kRj" eventType="touchUpInside" id="wpH-eF-nNm"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSd-oz-UBO">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="37"/>
-                                <color key="backgroundColor" red="1" green="0.1857388616" blue="0.57339501380000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Library"/>
                                 <connections>
                                     <action selector="openlb:" destination="2W5-Wt-kRj" eventType="touchUpInside" id="HRl-iE-k7L"/>
@@ -279,6 +279,7 @@
                             <constraint firstItem="85X-yK-D5P" firstAttribute="top" secondItem="Mr7-2W-Lfe" secondAttribute="bottom" constant="20" id="rAL-zv-2n1"/>
                             <constraint firstItem="Zza-mS-GOA" firstAttribute="top" secondItem="3oK-i5-2Sq" secondAttribute="top" constant="249" id="tBg-d4-i8A"/>
                             <constraint firstItem="HLn-Gk-KWu" firstAttribute="leading" secondItem="3oK-i5-2Sq" secondAttribute="leading" constant="124" id="tF6-JR-Fmx"/>
+                            <constraint firstItem="YLJ-lU-XU8" firstAttribute="width" secondItem="5Fq-mm-KEF" secondAttribute="height" multiplier="25:128" id="tV9-Hd-tfC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3oK-i5-2Sq"/>
                     </view>

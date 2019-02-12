@@ -33,11 +33,15 @@ class ViewController5: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        read()
     
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        read()
     }
     
     func read() {
+        userData.removeAll()
+        
         let docRef = Firestore.firestore().collection("Promptnow")
         docRef.getDocuments { (snapshot, err) in
             

@@ -69,7 +69,7 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
         lbage.isHidden = false
         lbname.isHidden = false
         lbdept.isHidden = false
-        
+
         lbtitleid.isHidden = false
         lbtitleage.isHidden = false
         lbtitledept.isHidden = false
@@ -79,12 +79,18 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
     }
     
     @IBAction func btnSave(_ sender: Any) {
-        
-        let layer = UIApplication.shared.keyWindow?.layer
+    
+      //  let layer = UIApplication.shared.keyWindow?.layer
         let scale = UIScreen.main.scale
-        UIGraphicsBeginImageContextWithOptions((layer?.frame.size)!, false, scale)
+
+
+       // UIGraphicsBeginImageContextWithOptions(self.imageInQR.bounds.size, self.imageInQR.isOpaque, 0.0)
+        UIGraphicsBeginImageContextWithOptions((self.imageQR.bounds.size), self.imageQR.isOpaque, scale)
+         self.view.drawHierarchy(in: CGRect(x: -123.5, y: -47, width: view.bounds.size.width, height: view.bounds.size.height), afterScreenUpdates: true)
         
-        layer?.render(in: UIGraphicsGetCurrentContext()!)
+//        self.imageQR.layer.render(in: UIGraphicsGetCurrentContext()!)
+//        self.imageInQR.layer.render(in: UIGraphicsGetCurrentContext()!)
+
         let screenshot = UIGraphicsGetImageFromCurrentImageContext()
         
         UIGraphicsEndImageContext()
@@ -92,30 +98,9 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
         UIImageWriteToSavedPhotosAlbum(screenshot!, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
 
         dismiss(animated: true, completion: nil)
+        
     }
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-//        if let qrcodeImg = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-//            let detector:CIDetector=CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy:CIDetectorAccuracyHigh])!
-//            let ciImage:CIImage=CIImage(image:qrcodeImg)!
-//            var qrCodeLink=""
-//
-//            let features=detector.features(in: ciImage)
-//            for feature in features as! [CIQRCodeFeature] {
-//                qrCodeLink += feature.messageString!
-//            }
-//
-//            if qrCodeLink=="" {
-//                print("nothing")
-//            }else{
-//                print("message: \(qrCodeLink)")
-//            }
-//        }
-//        else{
-//            print("Something went wrong")
-//        }
-//        self.dismiss(animated: true, completion: nil)
-//    }
-//
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let editimage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
@@ -160,7 +145,6 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
                         }
                         
                     }
-
             }
             imageQR.image = editimage
             
@@ -181,10 +165,14 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
             // we got back an error!
             let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .default))
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
             self.present(ac, animated: true)
         } else {
             let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            ac.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
+                self.imageQR.image = nil
+                self.imageInQR.image = nil
+                self.textfield.text = nil }))
             self.present(ac, animated: true)
         }
     }
@@ -194,9 +182,6 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
         if textfield.text != "" {
             guard let datadb = textfield.text else {return}
             let docRef = Firestore.firestore().collection("Promptnow").document(datadb)
-         
-            // let imageName = NSUUID().uuidString
-
             
             docRef.getDocument{ (document, err) in
                 if let document = document {
@@ -212,7 +197,6 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
                         let dept = document.get("dept") as! String
                         
                       //  let qrcodedata = ("ID:\(docID)\t\t |Depatment:\(dept)\t\t |Name:\(name)\t\t |Age:\(age)")
-                        
 //                        let docRef2 = Firestore.firestore()
 //                        docRef2.collection("Promptnow").document(docID).updateData(["qrcode": qrcodedata])
                         
