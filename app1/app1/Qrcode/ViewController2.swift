@@ -11,7 +11,7 @@ import FirebaseFirestore
 import FirebaseStorage
 import AVFoundation
 
-class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var imageQR: UIImageView!
     @IBOutlet weak var textfield: UITextField!
@@ -27,6 +27,7 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
     @IBOutlet weak var lbtitlename: UILabel!
     @IBOutlet weak var lbtitleage: UILabel!
     
+    
     override func viewDidLoad() {
         
         btnsave.isEnabled = false
@@ -40,7 +41,10 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
         lbtitleage.isHidden = true
         lbtitledept.isHidden = true
         lbtitlename.isHidden = true
-
+        
+        self.hidekeybord()
+        
+        textfield.delegate = self
     }
     
     
@@ -105,7 +109,7 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
         
         if let editimage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             let detector: CIDetector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy:CIDetectorAccuracyHigh])!
-            let ciImage: CIImage=CIImage(image:editimage)!
+            let ciImage: CIImage = CIImage(image:editimage)!
             var qrCodeLink = ""
             
             let features = detector.features(in: ciImage)
@@ -233,4 +237,20 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
 
         }
     }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
+    @IBAction func btnscan(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "scan") as! ScanViewController
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
+
+

@@ -30,9 +30,12 @@ class ViewController3: UIViewController,UIImagePickerControllerDelegate,UINaviga
     
     var isFromTab5:Bool = false
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.hidekeybord()
         
         if !self.isFromTab5 {
             img.layer.cornerRadius = img.frame.size.width / 2
@@ -55,6 +58,9 @@ class ViewController3: UIViewController,UIImagePickerControllerDelegate,UINaviga
         dept.isUserInteractionEnabled = !self.isFromTab5
         
         id.delegate = self
+        dept.delegate = self
+        name.delegate = self
+        age.delegate = self
         
         showimage()
     }
@@ -288,5 +294,24 @@ class ViewController3: UIViewController,UIImagePickerControllerDelegate,UINaviga
         }
         
     }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 
+}
+extension UIViewController {
+    func hidekeybord() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
 }

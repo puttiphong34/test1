@@ -42,6 +42,10 @@ class ViewController5: UIViewController, UITableViewDataSource, UITableViewDeleg
     func read() {
         userData.removeAll()
         
+        self.tableView2.delegate = self
+        self.tableView2.dataSource = self
+        self.tableView2.reloadData()
+        
         let docRef = Firestore.firestore().collection("Promptnow")
         docRef.getDocuments { (snapshot, err) in
             
@@ -62,8 +66,6 @@ class ViewController5: UIViewController, UITableViewDataSource, UITableViewDeleg
                     print(newData)
                     self.userData.append(newData)
                 }
-                self.tableView2.delegate = self
-                self.tableView2.dataSource = self
                 self.tableView2.reloadData()
             }
         }
@@ -87,7 +89,7 @@ class ViewController5: UIViewController, UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let dvc = self.storyboard?.instantiateViewController(withIdentifier: "Detail") as! ViewController3
-        dvc.getname = userData[indexPath.row].userName
+         dvc.getname = userData[indexPath.row].userName
         dvc.getid = userData[indexPath.row].userId
         dvc.getdept = userData[indexPath.row].userDept
         dvc.getage = userData[indexPath.row].userAge

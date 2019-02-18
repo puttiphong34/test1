@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5B066A765F6A9D046E983D78 /* Pods_app1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA940F66D7CA370549D97224 /* Pods_app1.framework */; };
 		90D6FD137DCF8578328875A6 /* Pods_app1Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB7EA9BF589F8D2DF540186 /* Pods_app1Tests.framework */; };
 		9A4A11633C726C9C942C8168 /* Pods_app1UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF43339C850E50805F82D34A /* Pods_app1UITests.framework */; };
 		E001BE4421E4688000C3F145 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E001BE4321E4688000C3F145 /* AppDelegate.swift */; };
@@ -24,6 +23,7 @@
 		E001BE7C21E48F1D00C3F145 /* dataCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E001BE7B21E48F1D00C3F145 /* dataCollectionViewCell.swift */; };
 		E04B2B9D21E88F9700DF52AD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E04B2B9C21E88F9700DF52AD /* GoogleService-Info.plist */; };
 		E0A727042202A86600E80043 /* ViewController5.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A727032202A86600E80043 /* ViewController5.swift */; };
+		E0E4FEE92212CA44001117FB /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E4FEE82212CA44001117FB /* ScanViewController.swift */; };
 		E0FAB63721EC9E5B00295D7E /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FAB63621EC9E5B00295D7E /* HeaderCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -71,8 +71,17 @@
 		E001BE7521E4691400C3F145 /* ViewController4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController4.swift; sourceTree = "<group>"; };
 		E001BE7921E46C2500C3F145 /* Tabbarcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabbarcon.swift; sourceTree = "<group>"; };
 		E001BE7B21E48F1D00C3F145 /* dataCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataCollectionViewCell.swift; sourceTree = "<group>"; };
+		E03B69B122151C9500378335 /* Pods_app1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_app1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E03B69B322152AF500378335 /* Pods_app1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_app1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E04B2B9C21E88F9700DF52AD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E04DDA9422142A720031F4B6 /* Pods_app1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_app1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E04DDA9622142ED10031F4B6 /* Pods_app1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_app1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E07E28E02214118C00F030B7 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E07E28E2221411A900F030B7 /* FirebaseFirestore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFirestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E07E28E42214127300F030B7 /* FirebaseStorage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseStorage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E07E28E6221412AE00F030B7 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0A727032202A86600E80043 /* ViewController5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController5.swift; sourceTree = "<group>"; };
+		E0E4FEE82212CA44001117FB /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		E0FAB63621EC9E5B00295D7E /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		FF43339C850E50805F82D34A /* Pods_app1UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_app1UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -82,7 +91,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B066A765F6A9D046E983D78 /* Pods_app1.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +116,14 @@
 		551AB9FEB4E7E82DB94BFD05 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E03B69B322152AF500378335 /* Pods_app1.framework */,
+				E03B69B122151C9500378335 /* Pods_app1.framework */,
+				E04DDA9622142ED10031F4B6 /* Pods_app1.framework */,
+				E04DDA9422142A720031F4B6 /* Pods_app1.framework */,
+				E07E28E6221412AE00F030B7 /* FirebaseDatabase.framework */,
+				E07E28E42214127300F030B7 /* FirebaseStorage.framework */,
+				E07E28E2221411A900F030B7 /* FirebaseFirestore.framework */,
+				E07E28E02214118C00F030B7 /* FirebaseCore.framework */,
 				AA940F66D7CA370549D97224 /* Pods_app1.framework */,
 				0AB7EA9BF589F8D2DF540186 /* Pods_app1Tests.framework */,
 				FF43339C850E50805F82D34A /* Pods_app1UITests.framework */,
@@ -159,6 +175,7 @@
 				E001BE4521E4688000C3F145 /* ViewController.swift */,
 				E001BE7B21E48F1D00C3F145 /* dataCollectionViewCell.swift */,
 				E001BE4721E4688000C3F145 /* Main.storyboard */,
+				E0E4FEE82212CA44001117FB /* ScanViewController.swift */,
 				E0A727052202A86B00E80043 /* Tableview */,
 				E00299452201B93B006A58B4 /* Qrcode */,
 				E03CDC4D21FEBFCC00E569DE /* AddDataToFirebase */,
@@ -492,6 +509,7 @@
 				E0A727042202A86600E80043 /* ViewController5.swift in Sources */,
 				E0FAB63721EC9E5B00295D7E /* HeaderCell.swift in Sources */,
 				E001BE7C21E48F1D00C3F145 /* dataCollectionViewCell.swift in Sources */,
+				E0E4FEE92212CA44001117FB /* ScanViewController.swift in Sources */,
 				E001BE7221E468F400C3F145 /* ViewController2.swift in Sources */,
 				E001BE7621E4691400C3F145 /* ViewController4.swift in Sources */,
 			);
@@ -669,14 +687,18 @@
 			baseConfigurationReference = A02A12F9735ED67BB7B8F0E8 /* Pods-app1.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XB7CKU93JZ;
 				INFOPLIST_FILE = app1/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "net.bumail-ruja.puttiphong.app1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -687,14 +709,18 @@
 			baseConfigurationReference = 7158E03495C43DBA75751D41 /* Pods-app1.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XB7CKU93JZ;
 				INFOPLIST_FILE = app1/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "net.bumail-ruja.puttiphong.app1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
