@@ -68,9 +68,10 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
                 alert.addAction(UIAlertAction(title: "Retake", style: .default, handler: { (nil) in
                     self.session.startRunning()
                 }))
-                alert.addAction(UIAlertAction(title: "Copy", style: .default, handler: { (action) in
+                alert.addAction(UIAlertAction(title: "Show", style: .default, handler: { (action) in
                   //  UIPasteboard.general.string = stringValue
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "Detail") as! ViewController3
+                    vc.isFromTab5 = true
                     let docRef = Firestore.firestore().collection("Promptnow").document(stringValue)
                     
                     docRef.getDocument{ (document, err) in
@@ -87,9 +88,9 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
                                 vc.getname = name
                                 vc.getage = age
                                 
-                                DispatchQueue.main.async (execute: {
-                                    self.navigationController?.pushViewController(vc, animated: true)
-                                })
+                                print("123")
+                                self.navigationController?.pushViewController(vc, animated: true)
+                            
                                 
                             }else {
                                 let alert = UIAlertController(title: "ไม่พบข้อมูล", message: nil, preferredStyle: .alert)
@@ -108,11 +109,14 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
             }
         }
     }
-    
-    override var prefersStatusBarHidden: Bool {
-        return true
+
+    override var shouldAutorotate: Bool {
+        return false
     }
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
         return .portrait
     }
    

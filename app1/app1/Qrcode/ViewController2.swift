@@ -90,7 +90,7 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
 
        // UIGraphicsBeginImageContextWithOptions(self.imageInQR.bounds.size, self.imageInQR.isOpaque, 0.0)
         UIGraphicsBeginImageContextWithOptions((self.imageQR.bounds.size), self.imageQR.isOpaque, scale)
-         self.view.drawHierarchy(in: CGRect(x: -123.5, y: -47, width: view.bounds.size.width, height: view.bounds.size.height), afterScreenUpdates: true)
+         self.view.drawHierarchy(in: CGRect(x: -100, y: -55, width: view.bounds.size.width, height: view.bounds.size.height), afterScreenUpdates: true)
         
 //        self.imageQR.layer.render(in: UIGraphicsGetCurrentContext()!)
 //        self.imageInQR.layer.render(in: UIGraphicsGetCurrentContext()!)
@@ -249,7 +249,8 @@ class ViewController2: UIViewController, UIImagePickerControllerDelegate, UINavi
     @IBAction func btnscan(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "scan") as! ScanViewController
         
-        self.navigationController?.pushViewController(vc, animated: true)
+        DispatchQueue.main.async(execute: {self.navigationController?.pushViewController(vc, animated: true)})
+        
     }
 }
 

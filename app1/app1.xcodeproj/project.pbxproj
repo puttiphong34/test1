@@ -76,11 +76,14 @@
 		E04B2B9C21E88F9700DF52AD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E04DDA9422142A720031F4B6 /* Pods_app1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_app1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E04DDA9622142ED10031F4B6 /* Pods_app1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_app1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E07781E6221E55B3002B08D4 /* Pods_app1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_app1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E07781E8221E8875002B08D4 /* Pods_app1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_app1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E07E28E02214118C00F030B7 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E07E28E2221411A900F030B7 /* FirebaseFirestore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseFirestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E07E28E42214127300F030B7 /* FirebaseStorage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseStorage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E07E28E6221412AE00F030B7 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0A727032202A86600E80043 /* ViewController5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController5.swift; sourceTree = "<group>"; };
+		E0C8856E221D3D7E00AC64E3 /* Pods_app1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_app1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0E4FEE82212CA44001117FB /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		E0FAB63621EC9E5B00295D7E /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		FF43339C850E50805F82D34A /* Pods_app1UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_app1UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,6 +119,9 @@
 		551AB9FEB4E7E82DB94BFD05 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E07781E8221E8875002B08D4 /* Pods_app1.framework */,
+				E07781E6221E55B3002B08D4 /* Pods_app1.framework */,
+				E0C8856E221D3D7E00AC64E3 /* Pods_app1.framework */,
 				E03B69B322152AF500378335 /* Pods_app1.framework */,
 				E03B69B122151C9500378335 /* Pods_app1.framework */,
 				E04DDA9622142ED10031F4B6 /* Pods_app1.framework */,
